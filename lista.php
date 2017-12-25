@@ -26,6 +26,8 @@
         <th>ID</th>
         <th>Nome</th>
         <th>Preço</th>
+        <th>Descricao</th>
+        <th>Categoria</th>
         <th>Remover</th>
       </tr>
     </thead>
@@ -37,10 +39,17 @@
       ?>
 
       <tr>
-        <td><?php echo $produto['id']?></td>
-        <td><?php echo $produto['nome']?></td>
-        <td>R$ <?php echo $produto['preco']?></td>
-        <td><a href="remove-produto.php?id=<?= $produto['id'] ?>" class="remove-button"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+        <td><?=$produto['id']?></td>
+        <td><?=$produto['nome']?></td>
+        <td>R$ <?=$produto['preco']?></td>
+        <td><?=substr($produto['descricao'], 0, 40)?></td>
+        <td><?=$produto['categoria_nome']?></td>
+        <td>
+          <form action="remove-produto.php" method="post">
+            <input type="hidden" name="id" value="<?= $produto['id'] ?>">
+            <button class="remove-button"><i class="fa fa-trash" aria-hidden="true"></i></button>
+          </form>
+        </td>
       </tr>
 
       <?php endforeach ?>

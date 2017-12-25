@@ -1,4 +1,8 @@
 <?php include('header.php');
+      include('conecta.php');
+      include('banco-categoria.php');
+
+  $categorias = listaCategorias($conexao);
   
   if(array_key_exists("add", $_GET) && $_GET['add'] == 'true'){
 
@@ -21,7 +25,7 @@
     <div class="form">
       <div class="container">
         
-      <form action="adiciona-produto.php">
+      <form action="adiciona-produto.php" method="post">
         <div class="form-wrapper">
 
           <div class="form-field">
@@ -32,6 +36,18 @@
           <div class="form-field">
             <label for="preco">Preço:</label>
             <input type="number" name="preco">
+          </div>
+
+          <div class="form-field">
+            <label for="descricao">Descrição:</label>
+            <textarea name="descricao"></textarea>
+          </div>
+
+          <div class="form-field">
+            <?php foreach($categorias as $categoria):?>
+              <label><?=$categoria['nome']?></label>
+              <input type="radio" name="categoria_id" value="<?=$categoria['id']?>">
+            <?php endforeach ?>
           </div>
 
           <div class="form-field">

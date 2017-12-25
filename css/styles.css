@@ -79,15 +79,18 @@ body {
   font-size: 20px;
 }
 
-.form .form-field input {
+.form .form-field input,
+.form .form-field textarea {
   width: 70%;
-  height: 40px;
+  resize: none;
   text-indent: 10px;
   border-radius: 3px;
   background: #333;
   border: none;
   color: #fff;
 }
+
+.form .form-field input { height: 40px; }
 
 .form .form-field:last-child {
   width: 100%;
@@ -106,6 +109,7 @@ body {
   border-radius: 0;
   background: #ff626c;
 }
+
 
 /*Adiciona-produto.php*/
 
@@ -146,6 +150,9 @@ body {
 .remove-button {
   font-size: 20px;
   color: #FF626C;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .remove-button:hover {
