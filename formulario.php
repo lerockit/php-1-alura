@@ -44,10 +44,17 @@
           </div>
 
           <div class="form-field">
-            <?php foreach($categorias as $categoria):?>
-              <label><?=$categoria['nome']?></label>
-              <input type="radio" name="categoria_id" value="<?=$categoria['id']?>">
-            <?php endforeach ?>
+            <label for="categoria_id">Categoria: </label>
+            <select name="categoria_id">
+              <?php foreach($categorias as $categoria):?>
+                <option value="<?=$categoria['id']?>"><?=$categoria['nome']?></option>
+              <?php endforeach ?>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="categoria_id">Usado: </label>
+            <input type="checkbox" name="usado" value="true">
           </div>
 
           <div class="form-field">

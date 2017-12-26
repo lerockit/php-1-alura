@@ -80,7 +80,8 @@ body {
 }
 
 .form .form-field input,
-.form .form-field textarea {
+.form .form-field textarea,
+.form .form-field select {
   width: 70%;
   resize: none;
   text-indent: 10px;
@@ -90,7 +91,12 @@ body {
   color: #fff;
 }
 
-.form .form-field input { height: 40px; }
+.form .form-field input,
+.form .form-field select { height: 40px; }
+
+.form .form-field select { text-transform: capitalize; }
+
+.form .form-field textarea { height: 100px; }
 
 .form .form-field:last-child {
   width: 100%;
@@ -98,6 +104,10 @@ body {
   margin-right: 0;
   margin-bottom: 0;
   margin-left: 0;
+}
+
+.form .form-field:nth-child(5) input {
+  width: 20px;
 }
 
 .form .form-field:last-child input {
