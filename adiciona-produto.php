@@ -1,5 +1,8 @@
 <?php include('conecta.php'); 
       include('banco-produto.php');
+      include 'logica-usuario.php'; 
+
+  verificaUsuario();
 
   $nome = $_POST['produto'];
   $preco = $_POST['preco'];

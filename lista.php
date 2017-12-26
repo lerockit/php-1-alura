@@ -2,6 +2,8 @@
       include('conecta.php'); 
       include('banco-produto.php');
 
+  verificaUsuario();
+
   $produtos = listaProdutos($conexao);
 
   if(array_key_exists("removed", $_GET) && $_GET['removed'] == 'true') {

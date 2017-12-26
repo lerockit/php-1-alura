@@ -1,3 +1,5 @@
+<?php include 'logica-usuario.php'; ?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -43,5 +45,15 @@
 
         </nav>
 
-      </div>        
+      </div>      
     </header>
+    <?php if (usuarioEstaLogado()): ?>
+      <div class="user">
+
+        <ul>
+          <li>Olá <?=substr(usuarioLogado(), 0, 10)?></li>  
+          <li><a href="logout.php"><i class="fa fa-power-off" aria-hidden="true"></i></a></li>
+        </ul>
+
+      </div>  
+    <?php endif ?>

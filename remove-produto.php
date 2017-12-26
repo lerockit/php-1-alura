@@ -1,6 +1,8 @@
-<?php include('header.php'); 
-      include('conecta.php'); 
+<?php include('conecta.php'); 
       include('banco-produto.php');
+      include 'logica-usuario.php'; 
+
+  verificaUsuario();
 
   $id = $_POST['id'];
 

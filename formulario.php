@@ -2,6 +2,8 @@
       include('conecta.php');
       include('banco-categoria.php');
 
+  verificaUsuario();
+
   $categorias = listaCategorias($conexao);
   
   if(array_key_exists("add", $_GET) && $_GET['add'] == 'true'){
