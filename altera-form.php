@@ -2,35 +2,18 @@
       include('conecta.php');
       include('banco-categoria.php');
       include('banco-produto.php');
-
   verificaUsuario();
 
   $id = $_GET['id'];
   $produto = buscaProduto($conexao, $id);
   $categorias = listaCategorias($conexao);
-  if($produto['usado'] == 'true') {
+  if($produto['usado'] == 1 ) {
     $checked = 'checked';
   } else {
     $checked = '';
   }
   
-  if(array_key_exists("alterado", $_GET) && $_GET['alterado'] == 'true'){
-
-?>
-
-    <div class="main">
-        <p class="sucess">Produto alterado com sucesso!</p>
-    </div>
-
-<?php } 
-
-  if(array_key_exists("alterado", $_GET) && $_GET['alterado'] == 'false') { ?>
-
-    <div class="main">
-        <p class="error">O produto não foi alterado!</p>
-    </div>
-
-<?php  } ?>
+  alerta(); ?>
 
     <div class="form">
       <div class="container">

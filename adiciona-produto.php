@@ -15,9 +15,11 @@
   }
 
   if(insereProduto($conexao, $nome, $preco, $descricao, $categoria_id, $usado)) {
-    header("Location: formulario.php?add=true");
+    $_SESSION['sucess'] = 'O produto foi inserido com sucesso';
+    header("Location: formulario.php");
   } else {
-    header("Location: formulario.php?add=false");
+    $_SESSION['error'] = 'O produo não foi inserido';
+    header("Location: formulario.php");
   }
 
   die();    

@@ -3,12 +3,9 @@
       include 'logica-usuario.php'; 
 
   verificaUsuario();
-
   $id = $_POST['id'];
-
   removeProduto($conexao, $id);
-
-  header("Location: lista.php?removed=true");
-
+  $_SESSION['sucess'] = "Produto Removido com Sucesso";
+  header("Location: lista.php");
   die();
 ?>

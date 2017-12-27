@@ -6,17 +6,9 @@
 
   $produtos = listaProdutos($conexao);
 
-  if(array_key_exists("removed", $_GET) && $_GET['removed'] == 'true') {
+  alerta();
 
 ?>
-
-<div class="removed-container main">
-  
-  <p class="sucess">O produto foi removido com sucesso</p>
-
-</div>
-
-<?php } ?>
 
 
 <div class="table-container">

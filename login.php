@@ -8,10 +8,12 @@
   $usuario = buscaUsuario($conexao, $email, $senha);
 
   if ($usuario == null) {
-    header("Location: index.php?login=0");
+    $_SESSION['error'] = 'Usuario ou senha ivalidos!';    
+    header("Location: index.php");
   } else {
     logaUsuario($usuario['email']);
-    header("Location: index.php?login=1");
+    $_SESSION['sucess'] = 'Login efetuado com sucesso!';
+    header("Location: index.php");
   };
 
 die();

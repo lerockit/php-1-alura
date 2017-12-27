@@ -3,26 +3,10 @@
       include('banco-categoria.php');
 
   verificaUsuario();
-
   $categorias = listaCategorias($conexao);
+  alerta(); 
   
-  if(array_key_exists("add", $_GET) && $_GET['add'] == 'true'){
-
 ?>
-
-    <div class="main">
-        <p class="sucess">Produto adicionado com sucesso!</p>
-    </div>
-
-<?php } 
-
-  if(array_key_exists("add", $_GET) && $_GET['add'] == 'false') { ?>
-
-    <div class="main">
-        <p class="error">O produto não foi adicionado!</p>
-    </div>
-
-<?php  } ?>
 
     <div class="form">
       <div class="container">

@@ -11,15 +11,17 @@
   $categoria_id = $_POST['categoria_id'];
 
   if (array_key_exists('usado', $_POST)) {
-    $usado = "true";
+    $usado = 1;
   } else {
-    $usado = "false";
+    $usado = 0;
   };
 
   if(alteraProduto($conexao, $id, $nome, $preco, $descricao, $categoria_id, $usado)) {
-    header("Location: altera-form.php?id={$id}&alterado=true");
+    $_SESSION['sucess'] = 'Produto '.$id.' alterado com sucesso';
+    header("Location: altera-form.php?id={$id}");
   } else {
-    header("Location: altera-form.php?id={$id}&alterado=false");
+    $_SESSION['error'] = 'O produto '.$id.' não foi alterado';
+    header("Location: altera-form.php?id={$id}");
   }
 
   die();    
