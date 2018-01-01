@@ -1,24 +1,27 @@
-<?php include('conecta.php'); 
-      include('banco-produto.php');
-      include 'logica-usuario.php'; 
+<?php require_once('conecta.php'); 
+      require_once('banco-produto.php');
+      require_once('logica-usuario.php'); 
+      require_once('class/produto.php');
 
   verificaUsuario();
 
-  $nome = $_POST['produto'];
-  $preco = $_POST['preco'];
-  $descricao = $_POST['descricao'];
-  $categoria_id = $_POST['categoria_id'];
+  $produto = new produto();
+
+  $produto->nome = $_POST['produto'];
+  $produto->preco = $_POST['preco'];
+  $produto->descricao = $_POST['descricao'];
+  $produto->categoria_id = $_POST['categoria_id'];
   if (array_key_exists('usado', $_POST)) {
-    $usado = "true";
+    $produto->usado = "true";
   } else {
-    $usado = "false";
+    $produto->usado = "false";
   }
 
-  if(insereProduto($conexao, $nome, $preco, $descricao, $categoria_id, $usado)) {
-    $_SESSION['sucess'] = 'O produto foi inserido com sucesso';
+  if(insereProduto($conexao, $produto)) {
+    $_SESSION['sucess'] = 'O produto '.$produto->nome.' foi inserido com sucesso';
     header("Location: formulario.php");
   } else {
-    $_SESSION['error'] = 'O produo não foi inserido';
+    $_SESSION['error'] = 'O produo '.$produto->nome.' não foi inserido';
     header("Location: formulario.php");
   }
 
