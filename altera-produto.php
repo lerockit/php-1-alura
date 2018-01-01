@@ -2,16 +2,20 @@
       require_once('banco-produto.php');
       require_once('logica-usuario.php');
       require_once('class/produto.php');       
+      require_once('class/categoria.php');       
 
   verificaUsuario();
 
   $produto = new produto();
+  $categoria = new categoria();
 
   $produto->id = $_POST['id'];
   $produto->nome = $_POST['produto'];
   $produto->preco = $_POST['preco'];
   $produto->descricao = $_POST['descricao'];
-  $produto->categoria_id = $_POST['categoria_id'];
+  $produto->categoria = $categoria;
+
+  $categoria->id = $_POST['categoria_id'];
 
   if (array_key_exists('usado', $_POST)) {
     $produto->usado = 1;

@@ -1,9 +1,15 @@
-<?php include('header.php');
-      include('conecta.php');
-      include('banco-categoria.php');
+<?php require_once('header.php');
+      require_once('conecta.php');
+      require_once('banco-categoria.php');
+      require_once('class/produto.php');
+      require_once('class/categoria.php');
 
   verificaUsuario();
+
   $categorias = listaCategorias($conexao);
+  $produto = new produto();
+  $checked = '';
+  
   alerta(); 
   
 ?>
@@ -14,38 +20,7 @@
       <form action="adiciona-produto.php" method="post">
         <div class="form-wrapper">
 
-          <div class="form-field">
-            <label for="produto">Produto:</label>
-            <input type="text" name="produto">
-          </div>
-
-          <div class="form-field">
-            <label for="preco">Preço:</label>
-            <input type="number" name="preco">
-          </div>
-
-          <div class="form-field">
-            <label for="descricao">Descrição:</label>
-            <textarea name="descricao"></textarea>
-          </div>
-
-          <div class="form-field">
-            <label for="categoria_id">Categoria: </label>
-            <select name="categoria_id">
-              <?php foreach($categorias as $categoria):?>
-                <option value="<?=$categoria['id']?>"><?=$categoria['nome']?></option>
-              <?php endforeach ?>
-            </select>
-          </div>
-
-          <div class="form-field">
-            <label for="categoria_id">Usado: </label>
-            <input type="checkbox" name="usado" value="true">
-          </div>
-
-          <div class="form-field">
-            <input type="submit" value="Enviar">
-          </div>
+          <?php require_once('base-form.php') ?>
 
         </div>          
       </form>
@@ -53,4 +28,4 @@
       </div>
     </div>
 
-<?php include('footer.php') ?>
+<?php require_once('footer.php') ?>
