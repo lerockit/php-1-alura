@@ -1,16 +1,16 @@
 <div class="form-field">
   <label for="produto">Produto:</label>
-  <input type="text" name="produto" value="<?=$produto->nome?>">
+  <input type="text" name="produto" value="<?=$produto->getNome()?>">
 </div>
 
 <div class="form-field">
   <label for="preco">Preço:</label>
-  <input type="number" name="preco" value="<?=$produto->preco?>">
+  <input type="number" name="preco" value="<?=$produto->getPreco()?>">
 </div>
 
 <div class="form-field">
   <label for="descricao">Descrição:</label>
-  <textarea name="descricao"><?=$produto->descricao?></textarea>
+  <textarea name="descricao"><?=$produto->getDescricao()?></textarea>
 </div>
 
 <div class="form-field">
@@ -18,13 +18,13 @@
   <select name="categoria_id">
     <?php foreach($categorias as $categoria):?>
       <?php 
-        if ($categoria->id == $produto->categoria->id){
+        if ($categoria->getId() == $produto->getCategoria()->getId()){
           $isCat = 'selected';
         } else {
           $isCat = '';
         } 
       ?>
-      <option value="<?=$categoria->id?>" <?=$isCat?> ><?=$categoria->nome?></option>
+      <option value="<?=$categoria->getId()?>" <?=$isCat?> ><?=$categoria->getNome()?></option>
     <?php endforeach ?>
   </select>
 </div>

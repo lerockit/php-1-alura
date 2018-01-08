@@ -1,4 +1,15 @@
-<?php include 'logica-usuario.php'; ?>
+<?php 
+  require_once ('logica-usuario.php');   
+  require_once ('conecta.php');
+
+  function carregaClasse($classe) 
+  {
+    require_once('class/'.$classe.'.php');    
+  }
+
+  spl_autoload_register("carregaClasse");
+  
+?>
 
 <!DOCTYPE html>
 <html>
@@ -37,7 +48,7 @@
           
           <ul>
             <li><a href="index.php">Home</a></li>
-            <li><a href="formulario.php">Adicionar Produto</a></li>
+            <li><a href="adiciona-form.php">Adicionar Produto</a></li>
             <li><a href="lista.php">Produtos</a></li>
             <li><a href="#">Sobre</a></li>
             <li><a href="#">Sobre</a></li>

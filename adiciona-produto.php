@@ -1,30 +1,32 @@
-<?php require_once('conecta.php'); 
-      require_once('banco-produto.php');
-      require_once('logica-usuario.php'); 
-      require_once('class/produto.php');
-      require_once('class/categoria.php');      
+<?php 
 
-  verificaUsuario();
+    require_once('header.php');
+       
+    verificaUsuario();
 
-  $produto = new produto();
-  $categoria = new categoria();
+    $categoria = new Categoria();
 
-  $produto->nome = $_POST['produto'];
-  $produto->preco = $_POST['preco'];
-  $produto->descricao = $_POST['descricao'];
-  $produto->categoria->id = $_POST['categoria_id'];
-  if (array_key_exists('usado', $_POST)) {
-    $produto->usado = "true";
-  } else {
-    $produto->usado = "false";
-  }
+    $nome = $_POST['produto'];
+    $preco = $_POST['preco'];
+    $descricao = $_POST['descricao'];
 
-  if(insereProduto($conexao, $produto)) {
-    $_SESSION['sucess'] = 'O produto '.$produto->nome.' foi inserido com sucesso';
-    header("Location: formulario.php");
-  } else {
-    $_SESSION['error'] = 'O produo '.$produto->nome.' não foi inserido';
-    header("Location: formulario.php");
-  }
+    $categoria->setId($_POST['categoria_id']);
 
-  die();    
+    if (array_key_exists('usado', $_POST)) {
+        $usado = "true";
+    } else {
+        $usado = "false";
+    }
+
+    $produto = new Produto($nome, $preco, $descricao, $categoria, $usado);
+    $produtoDao = new ProdutoDao($conexao);
+
+    if($produtoDao->insereProduto($produto)) {
+        $_SESSION['sucess'] = 'O produto '.$produto->getNome().' foi inserido com sucesso';
+        header("Location: adiciona-form.php");
+    } else {
+        $_SESSION['error'] = 'O produo '.$produto->getNome().' não foi inserido';
+        header("Location: adiciona-form.php");
+    }
+
+    die();    

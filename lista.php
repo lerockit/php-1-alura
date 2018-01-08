@@ -1,12 +1,12 @@
-<?php require_once('header.php'); 
-      require_once('conecta.php'); 
-      require_once('banco-produto.php');
-      require_once('class/produto.php');
-      require_once('class/categoria.php');
+<?php 
+  require_once('header.php'); 
 
   verificaUsuario();
 
-  $produtos = listaProdutos($conexao);
+  $produtoDao = new ProdutoDao($conexao);
+
+  $produtos = $produtoDao->listaProdutos();
+  $desconto = 0.2;
 
   alerta();
 
@@ -22,6 +22,7 @@
         <th>ID</th>
         <th>Nome</th>
         <th>Preço</th>
+        <th>Preço com Desconto de <?= $desconto*100?>%</th>
         <th>Descricao</th>
         <th>Categoria</th>
         <th>Remover</th>
@@ -35,15 +36,16 @@
       ?>
 
       <tr>
-        <td><?=$produto->id?></td>
-        <td><?=$produto->nome?></td>
-        <td>R$ <?=$produto->preco?></td>
-        <td><?=substr($produto->descricao, 0, 40)?></td>
-        <td><?=$produto->categoria->nome?></td>
-        <td><a href="altera-form.php?id=<?=$produto->id?>"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+        <td><?=$produto->getId()?></td>
+        <td><?=$produto->getNome()?></td>
+        <td>R$ <?=$produto->getPreco()?></td>
+        <td>R$ <?=$produto->precoComDesconto($desconto)?></td>
+        <td><?=substr($produto->getDescricao(), 0, 40)?></td>
+        <td><?=$produto->getCategoria()->getNome()?></td>
+        <td><a href="altera-form.php?id=<?=$produto->getId()?>"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
         <td>
           <form action="remove-produto.php" method="post">
-            <input type="hidden" name="id" value="<?= $produto->id ?>">
+            <input type="hidden" name="id" value="<?= $produto->getId() ?>">
             <button class="remove-button"><i class="fa fa-trash" aria-hidden="true"></i></button>
           </form>
         </td>
@@ -57,4 +59,4 @@
 
 </div>
 
-<?php include('footer.php') ?>
+<?php require_once('footer.php') ?>

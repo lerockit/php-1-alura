@@ -1,19 +1,21 @@
-<?php include 'conecta.php'; 
-      include 'banco-usuario.php';
-      include 'logica-usuario.php';
+<?php 
 
-  $email = $_POST['email'];
-  $senha = $_POST['senha'];
+    require_once 'conecta.php'; 
+    require_once 'banco-usuario.php';
+    require_once 'logica-usuario.php';
 
-  $usuario = buscaUsuario($conexao, $email, $senha);
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
 
-  if ($usuario == null) {
-    $_SESSION['error'] = 'Usuario ou senha ivalidos!';    
-    header("Location: index.php");
-  } else {
-    logaUsuario($usuario['email']);
-    $_SESSION['sucess'] = 'Login efetuado com sucesso!';
-    header("Location: index.php");
-  };
+    $usuario = buscaUsuario($conexao, $email, $senha);
 
-die();
+    if ($usuario == null) {
+        $_SESSION['error'] = 'Usuario ou senha ivalidos!';    
+        header("Location: index.php");
+    } else {
+        logaUsuario($usuario['email']);
+        $_SESSION['sucess'] = 'Login efetuado com sucesso!';
+        header("Location: index.php");
+    };
+
+    die();

@@ -147,7 +147,6 @@ body {
   background: #ff626c;
 }
 
-
 /*Adiciona-produto.php*/
 
 .main {
@@ -185,8 +184,8 @@ body {
 /*Lista.php*/
 
 .table-container {
-  margin: 30px auto;
-  width: 50%;
+  margin: 50px auto;
+  width: 98%;
   text-align: center;
   background: #fff;
   border-radius: 5px;

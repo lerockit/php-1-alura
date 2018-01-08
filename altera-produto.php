@@ -1,34 +1,34 @@
-<?php require_once('conecta.php'); 
-      require_once('banco-produto.php');
-      require_once('logica-usuario.php');
-      require_once('class/produto.php');       
-      require_once('class/categoria.php');       
+<?php 
 
-  verificaUsuario();
+    require_once('header.php');   
 
-  $produto = new produto();
-  $categoria = new categoria();
+    verificaUsuario();
 
-  $produto->id = $_POST['id'];
-  $produto->nome = $_POST['produto'];
-  $produto->preco = $_POST['preco'];
-  $produto->descricao = $_POST['descricao'];
-  $produto->categoria = $categoria;
+    $produtoDao = new ProdutoDao($conexao);
+    $categoriaDao = new CategoriaDao($conexao);
 
-  $categoria->id = $_POST['categoria_id'];
+    $categoria = new Categoria();
+    $categoria->setId($_POST['categoria_id']);
 
-  if (array_key_exists('usado', $_POST)) {
-    $produto->usado = 1;
-  } else {
-    $produto->usado = 0;
-  };
+    $nome = $_POST['produto'];
+    $preco = $_POST['preco'];
+    $descricao = $_POST['descricao'];
 
-  if(alteraProduto($conexao, $produto)) {
-    $_SESSION['sucess'] = 'O Produto '.$produto->id.' foi alterado com sucesso';
-    header("Location: altera-form.php?id={$produto->id}");
-  } else {
-    $_SESSION['error'] = 'O produto '.$produto->id.' não foi alterado';
-    header("Location: altera-form.php?id={$produto->id}");
-  }
+    if (array_key_exists('usado', $_POST)) {
+        $usado = 1;
+    } else {
+        $usado = 0;
+    };
 
-  die();    
+    $produto = new Produto($nome, $preco, $descricao, $categoria, $usado);
+    $produto->setId($_POST['id']);
+
+    if($produtoDao->alteraProduto($produto)) {
+        $_SESSION['sucess'] = 'O Produto '.$produto->getId().' foi alterado com sucesso';
+        header("Location: altera-form.php?id={$produto->getId()}");
+    } else {
+        $_SESSION['error'] = 'O produto '.$produto->getId().' não foi alterado';
+        header("Location: altera-form.php?id={$produto->getId()}");
+    }
+
+    die();    

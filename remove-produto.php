@@ -1,11 +1,12 @@
-<?php include('conecta.php'); 
-      include('banco-produto.php');
-      include 'logica-usuario.php'; 
+<?php 
+    require_once('header.php');
 
-  verificaUsuario();
-  $id = $_POST['id'];
-  removeProduto($conexao, $id);
-  $_SESSION['sucess'] = "Produto Removido com Sucesso";
-  header("Location: lista.php");
-  die();
+    $produtoDao = new ProdutoDao($conexao);
+
+    verificaUsuario();
+    $id = $_POST['id'];
+    $produtoDao->removeProduto($id);
+    $_SESSION['sucess'] = "Produto Removido com Sucesso";
+    header("Location: lista.php");
+    die();
 ?>
